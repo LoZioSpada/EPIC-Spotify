@@ -1,3 +1,4 @@
+// Funzione che fa apparire le foto degli album nel body
 const getMusic = (artist, id) => {
     const section = document.querySelector(`#${id}`);
     const row = document.querySelector(`#${id}Section`);
@@ -23,3 +24,5 @@ window.onload = () => {
     getMusic("queen", "queen")
     getMusic("metallica", "metallica")
 }
+
+// Funzione che fa apparire i titoli degli album nel modale
