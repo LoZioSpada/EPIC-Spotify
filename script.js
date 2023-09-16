@@ -5,17 +5,17 @@ const getMusic = (artist, id) => {
     console.log(row);
 
     fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + artist)
-    .then(response => response.json())
-    .then(body => {
-        // qui da utilizzare bootstrap per far apparire gli album nel body
-        let musica = body.data
-        section.classList.remove("d-none")
-        for (let i = 0; i < musica.slice(0, 4).length; i++) {
-            const elemento = musica[i]
-            row.innerHTML += `<div class="col col-3"> <img class="w-100" src='${elemento.album.cover_xl}'/> </div>`
-        }
-    })
-    .catch((err) => console.log(err)) 
+        .then(response => response.json())
+        .then(body => {
+            // qui da utilizzare bootstrap per far apparire gli album nel body
+            let musica = body.data
+            section.classList.remove("d-none")
+            for (let i = 0; i < musica.slice(0, 4).length; i++) {
+                const elemento = musica[i]
+                row.innerHTML += `<div class="col col-3"> <img class="w-100" src='${elemento.album.cover_xl}'/> </div>`
+            }
+        })
+        .catch((err) => console.log(err))
 }
 
 
@@ -26,3 +26,25 @@ window.onload = () => {
 }
 
 // Funzione che fa apparire i titoli degli album nel modale
+const getTitles = (artist, id) => {
+    const section = documemt.querySelector(`#exampleModal-${artist}`);
+    const row = document.querySelector(`#${id}Section`);
+    console.log(row);
+
+    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + artist)
+        .then(response => response.json())
+        .then(modal => {
+            let title = modal.data
+            section.classList.remove("d-none")
+            for (let i = 0; i < title.slice(0, 4).length; i++) {
+                const elemento = title[i]
+                row.innerHTML +=
+                    `<div class="">
+                <ul>
+                    <li>src='${elemento.album.title}'</li>
+                </ul>
+            </div>`
+            }
+        })
+        .catch((err) => console.log(err))
+}

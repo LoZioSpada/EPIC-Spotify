@@ -42,10 +42,10 @@
                       Library</a>
                   </li>
                   <li>
-                  <li>
                     <!-- Button trigger modal -->
-                    <a class="nav-item nav-link" href="#" data-target="#exampleModal" data-toggle="modal"><i class="fas fa-solid fa-plus fa-lg"></i></i>&nbsp; Add
-                      Playlist</a>
+                    <a class="nav-item nav-link" href="#" data-target="#exampleModal" data-toggle="modal" onclick="getTitles()">
+                      <i class="fas fa-solid fa-plus fa-lg"></i></i>&nbsp;
+                      Add Playlist</a>
                   </li>
                   <li>
                     <div class="input-group mt-3">
@@ -65,7 +65,7 @@
           </div>
 
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          <div class="modal fade d-none" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
               <div class="modal-content">
@@ -76,7 +76,6 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  ...
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
