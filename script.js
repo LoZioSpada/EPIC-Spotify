@@ -26,25 +26,27 @@ window.onload = () => {
 }
 
 // Funzione che fa apparire i titoli degli album nel modale
-const getTitles = (artist, id) => {
-    const section = documemt.querySelector(`#exampleModal-${artist}`);
-    const row = document.querySelector(`#${id}Section`);
-    console.log(row);
+function getTitles(artist) {
+    const modal = document.querySelector("#exampleModal");
+    const albumList = document.querySelector(".modal-body");
+    albumList.innerHTML = ""; // Cancella eventuali elementi precedenti
 
-    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + artist)
+    // Effettua una richiesta API per ottenere i titoli degli album
+    fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`, {
+        method: "GET"
+    })
         .then(response => response.json())
-        .then(modal => {
-            let title = modal.data
-            section.classList.remove("d-none")
-            for (let i = 0; i < title.slice(0, 4).length; i++) {
-                const elemento = title[i]
-                row.innerHTML +=
-                    `<div class="">
-                <ul>
-                    <li>src='${elemento.album.title}'</li>
-                </ul>
-            </div>`
-            }
+        .then(data => {
+
+
+            // Aggiungi i titoli degli album alla lista
+            data.data.forEach(album => {
+                const listItem = document.createElement("li");
+                listItem.textContent = album.title;
+                albumList.appendChild(listItem);
+            });
         })
-        .catch((err) => console.log(err))
+        .catch(error => {
+            console.error("Si è verificato un errore nella richiesta API:", error);
+        });
 }
